@@ -1,1 +1,9 @@
-{{ home.hi }}
+<div>
+  {{ home.workTime | timecode }}
+  <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
+</div><hr>
+
+<div>
+  {{ home.breakTime | timecode }}
+  <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
+</div>

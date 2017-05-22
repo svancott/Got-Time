@@ -1,35 +1,35 @@
 (function() {
     function HomeCtrl($interval) {
       var vm = this;
-      vm.workTime = 1500;
-      vm.breakTime = 300;
+      vm.workTime = 4;
+      vm.breakTime = 3;
       vm.workButtonText = "Start Work"
       vm.breakButtonText = "Take a Break"
       var workPromise;
       var breakPromise;
       vm.onBreak = false;
-      var resetBreak;
 
       var startWork = function() {
-        vm.onBreak = false;
-        workPromise = $interval(decreaseWork, 1000);
-      }
-
-      var resetWork = function() {
-        if (vm.workTime < 1) {
-          $interval.cancel(workPromise);
+        if (vm.workTime >= 0) {
+          vm.workTime -= 1;
+          workPromise = $interval(decreaseWork, 1000);
+        } else {
           vm.workTime = 1500;
           vm.workButtonText = "Start Work";
           vm.onBreak = true;
-        } else {
-          $interval.cancel(workPromise);
-          vm.workTime = 1500;
-          vm.workButtonText = "Start Work";
+          console.log("start else")
         }
       }
 
+      var resetWork = function() {
+        $interval.cancel(workPromise);
+        vm.workTime = 1500;
+        vm.workButtonText = "Start Work";
+        console.log("start else")
+      }
+
       function decreaseWork() {
-        if (vm.workTime >= 1) {
+        if (vm.workTime > 0) {
           vm.workTime -= 1;
         } else {
           resetWork();
@@ -38,6 +38,7 @@
 
       vm.workButtonContol = function() {
         if (vm.workButtonText == "Start Work") {
+          resetBreak();
           startWork();
           vm.workButtonText = "Reset";
         } else {
@@ -47,20 +48,20 @@
       }
 
       var startBreak = function() {
-        breakPromise = $interval(decreaseBreak, 1000);
-      }
-
-      var resetBreak = function() {
-        if (vm.breakTime < 1) {
-          $interval.cancel(breakPromise);
+        if (vm.breakTime >= 0) {
+          vm.breakTime -= 1;
+          breakPromise = $interval(decreaseBreak, 1000);
+        } else {
           vm.breakTime = 300;
           vm.breakButtonText = "Take a Break";
           vm.onBreak = false;
-        } else {
-          $interval.cancel(breakPromise);
-          vm.breakTime = 300;
-          vm.breakButtonText = "Take a Break";
         }
+      }
+
+      var resetBreak = function() {
+        $interval.cancel(breakPromise);
+        vm.breakTime = 300;
+        vm.breakButtonText = "Take a Break";
       }
 
       function decreaseBreak() {
@@ -73,6 +74,7 @@
 
       vm.breakButtonContol = function() {
         if (vm.breakButtonText == "Take a Break") {
+          resetWork();
           startBreak();
           vm.breakButtonText = "Reset";
         } else {

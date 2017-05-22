@@ -1,9 +1,9 @@
-<div>
+<div ng-hide="home.onBreak">
   {{ home.workTime | timecode }}
   <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
-</div><hr>
+</div>
 
-<div>
+<div ng-show="home.onBreak">
   {{ home.breakTime | timecode }}
   <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
 </div>

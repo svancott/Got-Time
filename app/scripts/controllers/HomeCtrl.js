@@ -8,7 +8,6 @@
       var workPromise;
       var breakPromise;
       vm.onBreak = false;
-      var resetBreak;
       vm.workSessions = 0;
 
       var startWork = function() {
@@ -46,7 +45,8 @@
       vm.workButtonContol = function() {
         if (vm.workButtonText == "Start Work") {
           startWork();
-          vm.workButtonText = "Reset";
+          vm.workTime -= 1;
+          vm.workButtonText = "Reset Work";
         } else {
           resetWork();
           vm.workButtonText = "Start Work";
@@ -89,7 +89,8 @@
       vm.breakButtonContol = function() {
         if (vm.breakButtonText == "Take a Break") {
           startBreak();
-          vm.breakButtonText = "Reset";
+          vm.breakTime -= 1;
+          vm.breakButtonText = "Reset Break";
         } else {
           resetBreak();
           vm.breakButtonText = "Take a Break";

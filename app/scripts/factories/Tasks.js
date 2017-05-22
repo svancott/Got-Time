@@ -10,9 +10,14 @@
       })
     }
 
+    var deleteTask = function(task) {
+      tasks.$remove(task)
+    }
+
     return {
       all: tasks,
-      add: addTask
+      add: addTask,
+      deleteTask: deleteTask
     };
   }
 

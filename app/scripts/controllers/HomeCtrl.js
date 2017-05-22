@@ -123,7 +123,16 @@
 
       vm.addTask = function(task) {
         Tasks.add(task);
-        vm.newTask = "";
+        vm.newTask = {};
+      }
+
+      vm.removeAllTasks = function() {
+        var r = confirm('Are you sure you want to remove all completed tasks?');
+        if (r == true) {
+          for (var i = 0; i < vm.tasks.length; i++) {
+            vm.tasks.$remove(vm.tasks[i]);
+          }
+        }
       }
 
       vm.pauseWork = function() {

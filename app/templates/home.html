@@ -5,19 +5,19 @@
       <p>{{task.name}}</p>
     </div>
     <input ng-model="home.newTask.name">
-    <button ng-click="home.addTask(home.newTask.name)">Add Task</button>
+    <button class="btn btn-success" ng-click="home.addTask(home.newTask.name)">Add Task</button>
   </div>
 
   <div class="timer">
     <h3>Timer</h3>
     <div>
       <h1>{{ home.workTime | timecode }}</h1>
-      <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
+      <button class="btn btn-primary" ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
     </div>
 
     <div ng-show="home.onBreak">
       <h1>{{ home.breakTime | timecode }}</h1>
-      <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
+      <button class="btn btn-info" ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
     </div>
     <h3>Work Sessions Completed: {{ home.workSessions }}</h3>
     </div>

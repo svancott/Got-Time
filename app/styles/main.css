@@ -3,6 +3,10 @@ body, html {
    background-color: lightblue;
 }
 
+button {
+  margin-top: 5px;
+}
+
 .pager {
   text-align: center;
   box-sizing: border-box;

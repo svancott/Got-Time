@@ -13,6 +13,7 @@
     <div>
       <h1>{{ home.workTime | timecode }}</h1>
       <button class="btn btn-primary" ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
+      <button class="btn btn-warning btn-sm" ng-show="home.canPause" ng-click="home.pauseWork()">{{ home.pauseButton }}</button>
     </div>
 
     <div ng-show="home.onBreak">

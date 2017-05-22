@@ -10,6 +10,8 @@
       vm.onBreak = false;
       vm.workSessions = 0;
       vm.tasks = Tasks.all;
+      vm.pauseButton = "Pause"
+      vm.canPause = false;
 
       var ding = new buzz.sound("/assets/sounds/ding.mp3", {
         preload: true
@@ -25,26 +27,31 @@
 
       var startWork = function() {
         vm.onBreak = false;
+        vm.canPause = true;
+        vm.pauseButton = "Pause";
         workPromise = $interval(decreaseWork, 1000);
+
       }
 
       var resetWork = function() {
         if (vm.workTime < 1) {
-          $interval.cancel(workPromise);
           ding.play();
           vm.workTime = 2;
           vm.workButtonText = "Start Work";
           vm.onBreak = true;
           vm.workSessions += 1;
+          vm.canPause = false;
+          $interval.cancel(workPromise);
           if (vm.workSessions > 3) {
             vm.breakTime = 1800;
             alert('Congrats! You can take a 30 minute break!')
             vm.workSessions = 0;
           }
         } else {
-          $interval.cancel(workPromise);
           vm.workTime = 1500;
           vm.workButtonText = "Start Work";
+          vm.canPause = false;
+          $interval.cancel(workPromise);
         }
       }
 
@@ -59,6 +66,7 @@
       vm.workButtonContol = function() {
         if (vm.workButtonText == "Start Work") {
           startWork();
+          resetBreak();
           vm.workTime -= 1;
           vm.workButtonText = "Reset Work";
         } else {
@@ -116,6 +124,16 @@
       vm.addTask = function(task) {
         Tasks.add(task);
         vm.newTask = "";
+      }
+
+      vm.pauseWork = function() {
+        if (vm.pauseButton == "Pause") {
+          $interval.cancel(workPromise);
+          vm.pauseButton = "Resume";
+        } else {
+          vm.pauseButton = "Pause";
+          startWork();
+        }
       }
     }
 

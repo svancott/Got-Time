@@ -1,10 +1,10 @@
 <div class="pager">
   <div class="task-history">
     <h3>Task History</h3>
-    <div ng-repeat="task in home.tasks">
-      <p>{{task.name}}</p>
+    <div class="tasks" ng-repeat="task in home.tasks | orderBy:'-dateCreated'">
+      {{ task.name }}
     </div>
-    <input ng-model="home.newTask.name">
+    <input class="new-task-input" ng-model="home.newTask.name">
     <button class="btn btn-success" ng-click="home.addTask(home.newTask.name)">Add Task</button>
   </div>
 

@@ -30,3 +30,15 @@ button {
   background-color: lightblue;
   height:100%;
 }
+
+.tasks {
+  padding: 20px;
+  border-bottom: 1px solid rgb(175,175,175);
+}
+.tasks:nth-child(even) {
+  background-color: rgb(175,175,175);
+}
+
+.new-task-input {
+  margin-top: 10px;
+}

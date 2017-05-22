@@ -1,11 +1,13 @@
-<div ng-hide="">
-  {{ home.workTime | timecode }}
-  <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
+<div class="row timers">
+  <div class="pull-left">
+    <h1>{{ home.workTime | timecode }}</h1>
+    <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
+  </div>
+
+  <div class="pull-right" ng-show="home.onBreak">
+    <h1>{{ home.breakTime | timecode }}</h1>
+    <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
+  </div>
 </div>
 
-<div ng-show="home.onBreak">
-  {{ home.breakTime | timecode }}
-  <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
-</div>
-
-Work Sessions Completed: {{ home.workSessions }}
+<h3>Work Sessions Completed: {{ home.workSessions }}</h3

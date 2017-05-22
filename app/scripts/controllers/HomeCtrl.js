@@ -1,14 +1,26 @@
 (function() {
-    function HomeCtrl($interval) {
+    function HomeCtrl($interval, $scope) {
       var vm = this;
-      vm.workTime = 1500;
-      vm.breakTime = 300;
+      vm.workTime = 3;
+      vm.breakTime = 2;
       vm.workButtonText = "Start Work"
       vm.breakButtonText = "Take a Break"
       var workPromise;
       var breakPromise;
       vm.onBreak = false;
       vm.workSessions = 0;
+
+      var ding = new buzz.sound("/assets/sounds/ding.mp3", {
+        preload: true
+      });
+
+      // $scope.$watch('timeRemaining', function(newVal, oldVal){
+      //   console.log(newVal,oldVal);
+      //   if (newVal == 0) {
+      //     console.log(newVal);
+      //     ding.play();
+      //   }
+      // })
 
       var startWork = function() {
         vm.onBreak = false;
@@ -18,7 +30,8 @@
       var resetWork = function() {
         if (vm.workTime < 1) {
           $interval.cancel(workPromise);
-          vm.workTime = 1500;
+          ding.play();
+          vm.workTime = 2;
           vm.workButtonText = "Start Work";
           vm.onBreak = true;
           vm.workSessions += 1;
@@ -60,6 +73,7 @@
       var resetBreak = function() {
         if (vm.breakTime < 1) {
           $interval.cancel(breakPromise);
+          ding.play();
           if (vm.workSessions > 3) {
             vm.breakTime = 1800;
           } else {
@@ -100,5 +114,5 @@
 
     angular
         .module('gotTime')
-        .controller('HomeCtrl', ['$interval', HomeCtrl]);
+        .controller('HomeCtrl', ['$interval', '$scope', HomeCtrl]);
 })();

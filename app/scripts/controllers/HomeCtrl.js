@@ -9,6 +9,7 @@
       var breakPromise;
       vm.onBreak = false;
       var resetBreak;
+      vm.workSessions = 0;
 
       var startWork = function() {
         vm.onBreak = false;
@@ -21,6 +22,12 @@
           vm.workTime = 1500;
           vm.workButtonText = "Start Work";
           vm.onBreak = true;
+          vm.workSessions += 1;
+          if (vm.workSessions > 3) {
+            vm.breakTime = 1800;
+            alert('Congrats! You can take a 30 minute break!')
+            vm.workSessions = 0;
+          }
         } else {
           $interval.cancel(workPromise);
           vm.workTime = 1500;
@@ -53,12 +60,20 @@
       var resetBreak = function() {
         if (vm.breakTime < 1) {
           $interval.cancel(breakPromise);
-          vm.breakTime = 300;
+          if (vm.workSessions > 3) {
+            vm.breakTime = 1800;
+          } else {
+            vm.breakTime = 300;
+          }
           vm.breakButtonText = "Take a Break";
           vm.onBreak = false;
         } else {
           $interval.cancel(breakPromise);
-          vm.breakTime = 300;
+          if (vm.workSessions > 3) {
+            vm.breakTime = 1800;
+          } else {
+            vm.breakTime = 300;
+          }
           vm.breakButtonText = "Take a Break";
         }
       }

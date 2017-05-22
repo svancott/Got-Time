@@ -1,4 +1,4 @@
-<div ng-hide="home.onBreak">
+<div ng-hide="">
   {{ home.workTime | timecode }}
   <button ng-click="home.workButtonContol()">{{ home.workButtonText }}</button>
 </div>
@@ -7,3 +7,5 @@
   {{ home.breakTime | timecode }}
   <button ng-click="home.breakButtonContol()">{{ home.breakButtonText }}</button>
 </div>
+
+Work Sessions Completed: {{ home.workSessions }}

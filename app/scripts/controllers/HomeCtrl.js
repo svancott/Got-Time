@@ -1,5 +1,5 @@
 (function() {
-    function HomeCtrl($interval, $scope) {
+    function HomeCtrl($interval, $scope, Tasks) {
       var vm = this;
       vm.workTime = 3;
       vm.breakTime = 2;
@@ -9,6 +9,7 @@
       var breakPromise;
       vm.onBreak = false;
       vm.workSessions = 0;
+      vm.tasks = Tasks.all;
 
       var ding = new buzz.sound("/assets/sounds/ding.mp3", {
         preload: true
@@ -110,9 +111,15 @@
           vm.breakButtonText = "Take a Break";
         }
       }
+      vm.newTask = {};
+
+      vm.addTask = function(task) {
+        Tasks.add(task);
+        vm.newTask = "";
+      }
     }
 
     angular
         .module('gotTime')
-        .controller('HomeCtrl', ['$interval', '$scope', HomeCtrl]);
+        .controller('HomeCtrl', ['$interval', '$scope', 'Tasks', HomeCtrl]);
 })();

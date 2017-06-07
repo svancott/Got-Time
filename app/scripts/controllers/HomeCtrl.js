@@ -17,13 +17,15 @@
         preload: true
       });
 
-      // $scope.$watch('timeRemaining', function(newVal, oldVal){
-      //   console.log(newVal,oldVal);
-      //   if (newVal == 0) {
-      //     console.log(newVal);
-      //     ding.play();
-      //   }
-      // })
+      $scope.$watch(function() {
+        return vm.workTime;
+      }, function(newVal, oldVal){
+        console.log(newVal,oldVal);
+        if (newVal == 0) {
+          console.log(newVal);
+          ding.play();
+        }
+      })
 
       var startWork = function() {
         vm.onBreak = false;

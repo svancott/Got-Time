@@ -43,3 +43,7 @@ button {
 .new-task-input {
   margin-top: 10px;
 }
+
+.add-remove {
+  clear: both;
+}

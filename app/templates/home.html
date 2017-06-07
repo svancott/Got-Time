@@ -5,8 +5,10 @@
       {{ task.name }}
     </div>
     <input class="new-task-input" ng-model="home.newTask.name" autofocus>
-    <button class="btn btn-success" ng-click="home.addTask(home.newTask.name)">Add Task</button>
-    <button class="btn btn-danger btn-xs" ng-click="home.removeAllTasks()">Remove All</button>
+    <div class="add-remove">
+      <button class="btn btn-success" ng-click="home.addTask(home.newTask.name)">Add Task</button>
+      <button class="btn btn-danger btn-xs" ng-click="home.removeAllTasks()">Remove All</button>
+    </div>
   </div>
 
   <div class="timer">

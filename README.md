@@ -1,9 +1,9 @@
 ## got time?
-Wand to make better use of your time and be more productive? Who doesn't?
+Want to make better use of your time and be more productive? Who doesn't?
 
 But do you **__got time?__**
 
-*got time* uses the Pomodoro technique to DO WORK!
+*got time?* uses the Pomodoro technique to DO WORK!
 
 
 # About me
